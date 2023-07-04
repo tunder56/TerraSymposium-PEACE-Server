@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
 
-namespace BunkersV3.Hubs
+namespace TerraSymposium_PEACE_Server.Hubs
 {
     public class Bunkershub : Hub
     {
@@ -9,17 +10,17 @@ namespace BunkersV3.Hubs
 
         
 
-        public Task SendMessage(string user, string Message)
+        public async Task SendMessage(string user, string Message)
         {
             Console.WriteLine("incomming message from" + user);
 
-            return Clients.All.SendAsync(method: "reciveMessage", user, Message);
+            await Clients.All.SendAsync(method: "reciveMessage", user, Message);
         }
 
-        public Task AttackMessage(string Attacktype, List<string> Targets, string Attacker)
+        public async Task AttackMessage(string Attacktype, List<string> Targets, string Attacker)
         {
             Console.WriteLine("attack method running");
-            return Clients.All.SendAsync(method: "incommingattack", Targets, Attacker, Attacktype);
+            await Clients.All.SendAsync(method: "incommingattack", Targets, Attacker, Attacktype);
 
         }
 
