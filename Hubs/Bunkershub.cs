@@ -64,7 +64,7 @@ namespace TerraSymposium_PEACE_Server.Hubs
 
         public async Task SendMessage(string user, string Message)
         {
-            Console.WriteLine("incomming message from" + user + " it says " + Message);
+            Console.WriteLine("incomming message from " + user + " it says " + Message);
 
             await Clients.All.SendAsync(method: "reciveMessage", user, Message);
         }
